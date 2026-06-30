@@ -27,3 +27,21 @@ Update your local package indexes and install fundamental networking/certificate
 ```bash
 sudo apt-get update && sudo apt-get upgrade -y
 sudo apt-get install -y curl apt-transport-https ca-certificates gnupg
+
+---
+
+### Phase 2: Install and Configure Docker
+KinD requires Docker to spin up Kubernetes nodes as containers.
+
+```bash
+# 1. Install Docker components
+sudo apt-get update
+sudo apt-get install -y docker.io
+
+# 2. Start and enable the Docker daemon
+sudo systemctl start docker
+sudo systemctl enable docker
+
+# 3. Grant your current 'ubuntu' user permission to use Docker without sudo
+sudo usermod -aG docker $USER
+newgrp docker
